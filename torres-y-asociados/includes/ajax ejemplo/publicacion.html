@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <input type="text" placeholder="usuario_id" id="usu">
+    <input type="text" placeholder="publicacion_id" id="pub">
+    <input type="button" value="etesech" onclick="likes();">
+    <div id="esomichin"></div>
+    <script>
+        function likes()
+        { 
+          var parametros = 
+          {
+            "usuario" : document.getElementById('usu').value,
+            "publicacion" : document.getElementById('pub').value,
+          };
+    
+          $.ajax({
+            data: parametros,
+            url: 'modelo.php',
+            type: 'POST',
+            
+            beforesend: function()
+            {
+              $('#mostrar_mensaje').html("Mensaje antes de Enviar");
+            },
+    
+            success: function(mensaje)
+            {
+              $('#esomichin').html(mensaje);
+            }
+          });
+        }
+    
+    
+    </script>
+</body>
+
+</html>

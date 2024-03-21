@@ -1,0 +1,14 @@
+{
+    "MySQLIException": {
+        "unknow_inifile": "ERROR: No se puede obtener las claves de acceso a la base de datos",
+        "connection_failed": {
+            "prefix": "ERROR: Fallo al ingresar a la base de datos del servidor: ",
+            "1": " credenciales invalidas",
+            "2": " base de datos no encontrada",
+            "3": " la conexion fue rechazada",
+            "4": " error desconocido"
+        },
+        "unknow": "ERROR: Ha ocurrido un error desconocido en la base de datos",
+        "mysql_not_installed": "ERROR: MySQL no esta instalado en este sistema"
+    }
+}

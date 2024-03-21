@@ -1,0 +1,59 @@
+{ "data": [
+             {
+                "ID": "10000",
+                "title": "Watamote"
+            },
+            {
+                "ID": "10001",
+                "title": "Tokyo Revengers"
+            },
+            {
+                "ID": "10002",
+                "title": "Naruto"
+            },
+            {
+                "ID": "10003",
+                "title": "HAIKYU!!"
+            },
+            {
+                "ID": "10004",
+                "title": "Mokushiroku no Yonkishi"
+            },
+            {
+                "ID": "10005",
+                "title": "One Piece"
+            },
+            {
+                "ID": "10006",
+                "title": "Tokyo Ghoul"
+            },
+            {
+                "ID": "10007",
+                "title": "Totsukuni No Shoujo - Tomo 01"
+            },
+            {
+                "ID": "10008",
+                "title": "Komi-san wa, Komyushō Desu"
+            },
+            {
+                "ID": "10009",
+                "title": "Boruto: Naruto Next Generations"
+            },
+            {
+                "ID": "10010",
+                "title": "Dragon Ball Super"
+            },
+            {
+                "ID": "10012",
+                "title": "Hajime no Ippo "
+            },
+            {
+                "ID": "10013",
+                "title": "Baki"
+            },
+            {
+                "ID": "10014",
+                "title": "Shingeki No Kyojin"
+            }
+        ]
+}

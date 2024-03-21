@@ -1,0 +1,14 @@
+{
+    "global": {
+        "ErrorException": "ERROR: Ha ocurrido un fallo interno en el servidor",
+        "unknow": "ERROR: Ha ocurrido un error desconocido en el servidor",
+        "query_failed": {
+            "cookieAuth": "ERROR: No se pudo autenticar mediante la cookie"
+        },
+        "cookie": {
+            "empty": "ERROR: No se ha encontrado el usuario en la cookie"
+        },
+        "UNSUPPORTED_PHP": "ERROR: La version de PHP de este sistema no esta soportada. Utilice minimo PHP 7.4",
+        "404": "404 - No encontrado"
+    }
+}

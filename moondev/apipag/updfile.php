@@ -1,0 +1,20 @@
+<?php
+date_default_timezone_set("America/Argentina/Buenos_Aires");
+session_start();
+require_once("../api/mysqli_connector.php");
+createConnection();
+$response = new stdClass();
+$obj = new stdClass();
+$userid = $_SESSION['userid'];
+$sql = "UPDATE misiones_en_curso SET showed = 1 WHERE usuario_id = $userid ORDER BY id DESC LIMIT 1 ";
+$result = mysqli_query($GLOBALS["mysqli"], $sql);
+$sql1 = "SELECT * FROM misiones_en_curso WHERE usuario_id = $userid AND showed = 1 ORDER BY id DESC LIMIT 1 ";
+$result1 = mysqli_query($GLOBALS["mysqli"], $sql1);
+$row = mysqli_fetch_array($result1);
+$obj->showed = $row['showed'];
+$obj->result = $row['result'];
+$datos = $obj;
+$response->datos = $datos;
+mysqli_close($GLOBALS["mysqli"]);
+header('Content-Type: application/json; charset=utf-8');
+echo (json_encode($response));

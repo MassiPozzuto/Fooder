@@ -1,0 +1,139 @@
+{
+    "email": {
+        "login_failed": "Email o contrase&ntilde;a incorrectos",
+        "slash": "El email no puede contener el caracter \"/\" o \"\"",
+        "non_string": "Error al cargar el tipo de email",
+        "empty": "No has ingresado ningun email",
+        "min_error": "El email debe ser mayor a 5 caracteres",
+        "max_error": "La email debe ser menor a 64 caracteres",
+        "not_found": "El email ingresado no se encuentra registrado",
+        "wrong": "El email ingresado es incorrecto",
+        "unknow": "Ha ocurrido un error desconocido desconocido en el email",
+        "used": "Este email ya se encuentra registrado",
+        "deleted": "Este usuario ha sido eliminado",
+        "test": "Mensaje de prueba de fallo de email",
+        "not_the_same": "El email no es identico al anterior"
+    },
+    "password": {
+        "slash": "La contrase&ntilde;a no puede contener el caracter \"/\" o \"\"",
+        "non_string": "Error al cargar el tipo de contrase&ntilde;a",
+        "empty": "No has ingresado ninguna contrase&ntilde;a",
+        "min_error": "La contrase&ntilde;a debe ser mayor a 8 caracteres",
+        "max_error": "La contrase&ntilde;a debe ser menor de 32 caracteres",
+        "not_matched": "La contrase&ntilde;a debe contener al menos un numero, una minuscula, una mayuscula y un caracter especial",
+        "missing": {
+            "prefix": "La contrase&ntilde;a debe contener al menos ",
+            "1": "un numero",
+            "2": "una minuscula",
+            "3": "una mayuscula",
+            "4": "un caracter especial",
+            "number": "La contrase&ntilde;a debe contener al menos 1 numero",
+            "lowercase": "La contrase&ntilde;a debe contener al menos una minuscula",
+            "uppercase": "la contrase&ntilde;a debe cpntener al menos una mayuscula",
+            "special": "La contrase&ntilde;a debe contener al menos un caracter especial"
+        },
+        "wrong": "La contrase&ntilde;a ingresada es incorrecta",
+        "unknow": "Ha ocurrido un error desconocido en la contrase&ntilde;a",
+        "not_the_same": "La contrase&ntilde;a no es identica a la anterior",
+        "not_validated": "La contrase&ntilde;a original no es valida",
+        "test": "Mensaje de prueba de fallo de contrase&ntilde;a"
+    },
+    "username": {
+        "slash": "El usuario no puede contener el caracter \"/\" o \"\"",
+        "wrong": "El nombre de usuario ingresado es incorrecto",
+        "non_string": "Error al cargar el tipo de usuario",
+        "empty": "No has ingresado ningun nombre de usuario",
+        "min_error": "El nombre debe ser mayor de 3 caracteres",
+        "max_error": "El nombre debe ser menor de 16 caracteres",
+        "used": "Este nombre ya se encuentra en uso",
+        "forbidden": "Este nombre es inapropiado",
+        "unknow": "Ha ocurrido un error desconocido con el usuario.",
+        "not_the_same": "El nombre de usuario no es identico al anterior",
+        "not_matched": "El nombre de usuario no puede contener caracteres especiales",
+        "test": "Mensaje de prueba de fallo de usuario"
+    },
+    "birthdate": {
+        "slash": "La edad no puede contener el caracter \"/\" o \"\"",
+        "empty": "No has ingresado ninguna edad",
+        "non_string": "Error al cargar el tipo de edad",
+        "age": {
+            "underage": "Usted no cumple la edad minima permitida",
+            "overage": "Ingresa tu verdadera edad",
+            "invalid": "Edad invalida"
+        },
+        "unknow": "Ha ocurrido un error desconocido con la edad",
+        "test": "Mensaje de prueba de fallo de edad"
+    },
+    "coins": {
+        "empty": "No se han ingresado las monedas",
+        "non_string": "No se pudo cargar el tipo de monedas",
+        "wrong": "Las monedas ingresadas son incorrectas",
+        "slash": "La moneda no puede contener el caracter slash",
+        "invalid": "Las monedas deben ser un numero entero valido mayor a 0",
+        "max_message": "La cantidad de monedas no puede ser mayor a 999999",
+        "min_message": "La cantidad de monedas no puede ser menor a 0"
+    },
+    "userid": {
+        "slash": "El ID de usuario no puede contener el caracter \"/\" o \"\"",
+        "wrong": "El ID de usuario ingresado es incorrecto",
+        "non_string": "Error al cargar el tipo de ID de usuarip",
+        "empty": "No has ingresado ningun ID de usuario",
+        "invalid": "El ID de usuario debe ser un numero entero valido mayor a 0"
+    },
+    "personaje_id": {
+        "empty": "No se han ingresado el personaje",
+        "non_string": "No se pudo cargar el tipo de personaje",
+        "wrong": "El personaje ingresado es incorrecto",
+        "slash": "El personaje no puede contener el caracter slash",
+        "invalid": "El ID de personaje no existe o no es valido"
+    },
+    "roles": {
+        "empty": "No se han ingresado el rol",
+        "non_string": "No se pudo cargar el tipo de rol",
+        "wrong": "El rol ingresado es incorrecto",
+        "slash": "El rol no puede contener el caracter slash",
+        "invalid": "El rol ingresado no existe o no es valido"
+    },
+    "global": {
+        "query_failed": {
+            "login": "ERROR: Fallo interno en la base de datos al iniciar sesion",
+            "register": "ERROR: Fallo interno en la base de datos al registrarse",
+            "selectAll": "ERROR: Fallo interno en la base de datos al obtener informacion del usuario",
+            "deleteOldUsername": "ERROR: Fallo interno en la base de datos al eliminar el nombre de usuario anterior",
+            "insertNewUsername": "ERROR: Fallo interno en la base de datos al insertar el nuevonombre de usuario",
+            "changePassword": "ERROR: Fallo interno en la base de datos al cambiar de contrase&ntilde;a",
+            "getPassword": "ERROR: Fallo interno en la base de datos al obtener la contrase&ntilde",
+            "updateUser": "ERROR: Fallo interno en la base de datos al actualizar la informacion del usuario",
+            "cookieAuth": "ERROR: No se pudo autenticar mediante la cookie"
+        },
+        "invalid_request_method": "ERROR: Se intento autenticar mediante un metodo no autorizado",
+        "invalid_auth_method": "ERROR: No se puede comprobar el metodo de autenticacion",
+        "unknow_auth_method": "ERROR: No se ha fijado un metodo de autenticacion",
+        "doesUserExists": {
+            "email_failed": "ERROR: No se pudo comprobar si el email esta registrado",
+            "name_failed": "ERROR: No se pudo comprobar si el nombre de usuario esta registrado"
+        },
+        "getPassword": {
+            "unknow": "ERROR: No se encontro la contrase&ntilde;a en la base de datos"
+        },
+        "selectAll": {
+            "unknow_userid": "ERROR: No se encontro informacion del usuario en la base de datos"
+        },
+        "ErrorException": "ERROR: Ha ocurrido un fallo interno en el servidor",
+        "unknow": "ERROR: Ha ocurrido un error desconocido en el servidor",
+        "test": "ERROR: Mensaje de prueba de fallo interno",
+        "local": {
+            "unknow_lenght": "ERROR LOCAL: Maximo y minimo de caracteres desconocido",
+            "unknow_swipe": "ERROR LOCAL: Se intento cambiar a un modo desconocido"
+        },
+        "module_failed": {
+            "system_handler": "ERROR: No se pudo cargar el modulo system_handler"
+        },
+        "non_logged": "ERROR: Usted no esta autenticado en el sistema",
+        "access_denied": "ERROR 403: Acceso denegado",
+        "unknow_settings": "ERROR: Ajustes desconocidos",
+        "cookie": {
+            "empty": "ERROR: No se ha encontrado el usuario en la cookie"
+        }
+    }
+}
