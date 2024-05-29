@@ -1,9 +1,0 @@
-Administrator User:
-E-Mail: nico205@gmail.com
-Username: nico205
-Password: EE$$$77eeGg
-
-Non Administrator User:
-E-mail: test@gmail.com
-Username: tester
-Password: EE$$77eeGg

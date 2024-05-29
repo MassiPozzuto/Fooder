@@ -1,26 +1,6 @@
 #Carpeta .vscode
 .vscode
-moondev/.vscode
-dasomnya/.vscode
 viex/.vscode
-torres-y-asociados/.vscode
-teruel/.vscode
-
-dasomnya/mangas/*
-dasomnya/pointshop/*
-dasomnya/.htaccess
-torres-y-asociados/img/users/*
 viex/images/recipes/*
 viex/images/profiles/*
 !viex/images/profiles/default.png
-
-#node_modules
-package-lock.json
-package.json
-node_modules
-
-#ESLint
-.eslintrc.json
-
-#Live Share
-.vsls.json
