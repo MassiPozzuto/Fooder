@@ -1,6 +1,5 @@
 #Carpeta .vscode
 .vscode
-viex/.vscode
-viex/images/recipes/*
-viex/images/profiles/*
-!viex/images/profiles/default.png
+images/recipes/*
+images/profiles/*
+!images/profiles/default.png
