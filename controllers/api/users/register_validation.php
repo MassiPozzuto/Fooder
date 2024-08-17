@@ -1,5 +1,5 @@
 <?php
-
+$message = ["status" => "error"];
 if (!empty($_POST)) {
   $username = trim($_POST['username']);
   $name = trim($_POST['name']);
@@ -16,7 +16,7 @@ if (!empty($_POST)) {
   $sqlCheckUsername = "SELECT * FROM users WHERE username='$username'";
   $resultCheckUsername = mysqli_query($conn, $sqlCheckUsername);
 
-  $message = [];
+  
   if (($username != null && strlen($username) < 31) && ($name != null && strlen($name) < 41) && ($email != null && strlen($email) < 301) && ($password != null && strlen($password) > 7) && ($cpassword != null) && ($password == $cpassword) && (!mysqli_num_rows($resultCheckEmail) > 0) && (!mysqli_num_rows($resultCheckUsername) > 0) &&  (preg_match('/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/', $email))) {
     // bien
     $sqlRegister = "INSERT INTO users (username, name, email, password, created_at) VALUES ('" . $username . "', '" . $name . "', '" . $email . "', '" . sha1($password) . "', now())";
@@ -42,6 +42,7 @@ if (!empty($_POST)) {
         
         $_SESSION['user'] = $rowLogin;
         $message['message'] = "Se ha registrado correctamente";
+        $message['status'] = "success";
       }
     } else {
       die('Error de Consulta ' . mysqli_error($conn));
@@ -74,6 +75,6 @@ if (!empty($_POST)) {
     if (!$password) $message['password'] = "Por favor ingrese una contraseña";
     if (!$cpassword) $message['cpassword'] = "Por favor confirme su contraseña";
   }
-  header("Content-Type: application/json; charset=utf-8");
-  return print_r(json_encode($message));
 }
+header("Content-Type: application/json; charset=utf-8");
+return print_r(json_encode($message));
