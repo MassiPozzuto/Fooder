@@ -1,5 +1,6 @@
 <?php
 $message = ["message" => "Error"];
+$message = ["status" => "error"];
 if (!isset($_SESSION['user'])) {
   require_once('../../../includes/config.php');
 
@@ -28,6 +29,7 @@ if (!isset($_SESSION['user'])) {
 
         $message = [
           'message' => "Hecho",
+          'status' => "success",
           'action' => "Se han hechos los cambios correctamente"
         ];
       } else {

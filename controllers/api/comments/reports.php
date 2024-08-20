@@ -2,6 +2,7 @@
 
 
 require_once("../../../includes/config.php");
+$message = ["status" => "error"];
 
 if (isset($_SESSION['user'])) {
   if (isset($_POST['comment_reported_id']) && is_numeric($_POST['comment_reported_id'])) {
@@ -15,6 +16,7 @@ if (isset($_SESSION['user'])) {
 
       $message = [
         'message' => "Hecho",
+        'status' => "success",
         'action' => "Se reporto correctamente el comentario con id " . $_POST['comment_reported_id']
       ];
     } else {

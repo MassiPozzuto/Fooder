@@ -1,5 +1,5 @@
 <?php
-
+$message = ["status" => "error"];
 
 require_once("../../../includes/config.php");
 
@@ -20,6 +20,7 @@ if (isset($_SESSION['user'])) {
 
         $message = [
           'message' => "Hecho",
+          'status' => "success",
           'action' => "Se reporto correctamente el user con id " . $_POST['profile_reported_id']
         ];
       } else {

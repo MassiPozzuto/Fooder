@@ -7,7 +7,7 @@ if (!$conn) {
   die('Error de Conexión (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
 }
 mysqli_set_charset($conn, "utf8");
-
+$message = ["status" => "error"];
 
 if (isset($_SESSION['user'])) {
   $sqlIsBanned = "SELECT * FROM `bans` WHERE user_id = " . $_SESSION['user']['id'] . " AND (end_at > now() OR permaban IS NOT NULL)";
@@ -38,6 +38,7 @@ if (isset($_SESSION['user'])) {
     // Cuenta no baneada
     $message = [
       'message' => "Hecho",
+      'status' => "success",
       'reason' => "La cuenta no se encuentra baneada"
     ];
   }

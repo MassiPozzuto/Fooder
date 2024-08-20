@@ -4,6 +4,7 @@
 require_once "../../../includes/config.php";
 
 $message = ["message" => "Error"];
+$message = ["status" => "error"];
 if (isset($_SESSION['user'])) {
   if (!empty($_FILES)) {
     /*return print_r(json_encode($_FILES));
@@ -84,6 +85,7 @@ if (isset($_SESSION['user'])) {
 
             $message = [
               'message' => "Hecho",
+              'status' => "success",
               'action' => "Se ha cambiado correctamente la foto de perfil ".$_SESSION['user']['id']
             ];
           } else {

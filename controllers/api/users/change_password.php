@@ -1,5 +1,5 @@
 <?php
-
+$message = ["status" => "error"];
 $message = ["message" => "Error"];
 if (!isset($_SESSION['user'])) {
   require_once('../../../includes/config.php');
@@ -22,6 +22,7 @@ if (!isset($_SESSION['user'])) {
 
           $message = [
             'message' => "Hecho",
+            'status' => "success",
             'action' => "Se ha actualizado la contraseña correctamente"
           ];
         } else {

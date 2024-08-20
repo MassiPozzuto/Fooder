@@ -3,6 +3,7 @@
 
 require_once "../../../includes/config.php";
 require_once "../../../includes/functions.php";
+$message = ["status" => "error"];
 
 if (isset($_SESSION['user'])) {
   $message = ['message' => 'Error al intentar publicar el comentario'];
@@ -16,6 +17,7 @@ if (isset($_SESSION['user'])) {
 
       $message = [
         'message' => 'Se ha publicado correctamente el comentario',
+        'status' => "success",
         'id' => $rowId['comment_id'],
         'user_logged_id' => $_SESSION['user']['id'],
         'profile_pic' => profile_image($_SESSION['user']['id']),

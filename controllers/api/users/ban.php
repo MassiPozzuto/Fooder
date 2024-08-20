@@ -1,5 +1,5 @@
 <?php
-
+$message = ["status" => "error"];
 require_once "../../../includes/config.php";
 require_once "../../../includes/functions.php";
 
@@ -42,7 +42,8 @@ if ($_SESSION['user']['role_id'] != 1) {
                     }
                     $message = [
                         'message' => "Hecho",
-                        'action' => "Ban"
+                        'action' => "Ban",
+                        'status' => 'success'
                     ];
                 } else {
                     $message = [

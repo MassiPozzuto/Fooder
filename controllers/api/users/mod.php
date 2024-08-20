@@ -1,5 +1,5 @@
 <?php
-
+$message = ["status" => "error"];
 require_once "../../../includes/config.php";
 
 
@@ -24,6 +24,7 @@ if (is_numeric($user_id)) {
       }
       $message = [
         'message' => "Hecho",
+        'status' => "success",
         'action' => "Mod"
       ];
     } else if ($rowRole['role_id'] == 2) {
@@ -35,6 +36,7 @@ if (is_numeric($user_id)) {
       }
       $message = [
         'message' => "Hecho",
+        'status' => "success",
         'action' => "Unmod"
       ];
     } else {

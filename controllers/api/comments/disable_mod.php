@@ -3,7 +3,7 @@
 require_once "../../../includes/config.php";
 require_once "../../../includes/functions.php";
 
-
+$message = ["status" => "error"];
 if ($_SESSION['user']['role_id'] != 1) {
     if (!empty($_POST)) {
         $comment_id = $_POST['comment_to_delete_id'];
@@ -33,6 +33,7 @@ if ($_SESSION['user']['role_id'] != 1) {
                     }
                     $message = [
                         'message' => "Hecho",
+                        'status' => "success",
                         'action' => "Ban"
                     ];
                 } else {
