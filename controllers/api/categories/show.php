@@ -15,6 +15,7 @@ if ($_POST['for'] == 'categories_mod') {
 } else if ($_POST['for'] == 'post_recipe') {
   if (isset($_SESSION['user'])) {
     //Para categorias
+   // var_dump($_SESSION['user']);
     $sqlCategories = "SELECT * FROM categories ORDER BY name ASC";
   }
 } else if ($_POST['for'] == 'edit_recipe') {

@@ -27,11 +27,11 @@ $title = trim($_POST['title']);
 $intro = trim($_POST['introduction']);
 $ingredients = trim($_POST['ingredients']);
 $steps = trim($_POST['steps']);
-//$categories = json_decode($_POST['categories']);
-$categories = "Pasta";
+$categories = json_decode($_POST['categories']);
+
 
 // && count($categories) < 15;
-if (($title != null && strlen($title) < 76) && (strlen($intro) < 251) && ($ingredients != null && strlen($ingredients) < 501) && ($steps != null && strlen($steps) < 2001)) {
+if (($title != null && strlen($title) < 76) && (strlen($intro) < 251) && ($ingredients != null && strlen($ingredients) < 501) && ($steps != null && strlen($steps) < 2001) && count($categories) < 15) {
   $sqlPostRecipe = "INSERT INTO recipes (user_id, title, introduction, ingredients, steps, created_at) VALUES ('" . $_SESSION['user']['id'] . "', '" . trim($_POST['title']) . "', '" . trim($_POST['introduction']) . "', '" . trim($_POST['ingredients']) . "' , '" . trim($_POST['steps']) . "', now()); ";
   $resultPostRecipe = mysqli_query($conn, $sqlPostRecipe);
   // Hacerlo en mysqli_multi_query
@@ -42,7 +42,7 @@ if (($title != null && strlen($title) < 76) && (strlen($intro) < 251) && ($ingre
     die('Error de Consulta ' . mysqli_error($conn));
   }
 
- /* if (count($categories) > 0) {
+ if (count($categories) > 0) {
     $sqlCategories = "INSERT INTO categories_recipes (recipe_id, category_id) VALUES ";
     foreach ($categories as $key => $category) {
       $sqlCategories .= "(" . $rowId['recipe_id'] . ", " . $category->id . ")";
@@ -52,7 +52,7 @@ if (($title != null && strlen($title) < 76) && (strlen($intro) < 251) && ($ingre
     if (!$resultCategories) {
       die('Error de Consulta ' . mysqli_error($conn));
     } 
-  }*/
+  }
 } else {
   // Campos vacios
   if (!$title) return print_r(json_encode(['message' => 'Error al intentar publicar', 'message_title' => "Ingrese un titulo", 'status' => http_response_code(500)]));
