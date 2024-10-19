@@ -6,7 +6,7 @@ if (!empty($_POST)) {
   $sqlLogin = "SELECT * FROM users WHERE email='" . trim($_POST['email']) . "' AND deleted_at IS NULL";
   $resultLogin = mysqli_query($conn, $sqlLogin);
 
-  $message = ["message" => "Error al iniciar sesión"];
+  $message = ["message" => "Error al iniciar sesión", "status" => "error"];
   if (mysqli_num_rows($resultLogin) === 1) {
     $sqlLogin = "SELECT users.*, users_roles.role_id FROM users 
                   INNER JOIN users_roles 
@@ -32,10 +32,11 @@ if (!empty($_POST)) {
         }
 
         $message['message'] = "Se ha iniciado sesión correctamente";
+        $message['status'] = "success";
       } else {
         // La cuenta esta baneada
         $rowIsBan = mysqli_fetch_assoc($resultIsBan);
-        $message['account'] = 'Actualmente te encuentras baneado, para más información, revisa tu correo';  
+        $message['account'] = 'Actualmente te encuentras baneado, para más información, revisa tu correo';
       }
     } else {
       // Error en la autentificacion 

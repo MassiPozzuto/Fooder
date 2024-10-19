@@ -211,7 +211,8 @@ if ($_POST['for'] != 'recipes_reported_mod') {
 
 $message = [
   'message' => "Hecho",
-  'user_logged_id' => (isset($_SESSION['user']['id'])) ? $_SESSION['user']['id'] : null,
+  'status' => "success",
+  'user_logged_id' => (isset($_SESSION['user']['id'])) ? $_SESSION['user']['id'] : "puto",
   'recipes' => $rowRecipe,
   'amt_recipes_page' => $amt_recipes_page,
   'amt_total_reg' => $amt_total_reg,
