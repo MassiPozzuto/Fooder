@@ -3,7 +3,7 @@
 require_once "../../../includes/config.php";
 
 $message = ["message" => "Error"];
-
+$message = ["status" => "error"];
 $dir = "../../../images/profiles/" . $_SESSION['user']['id'];
 $profile_pic = $dir . "/profile_pic";
 
@@ -28,6 +28,7 @@ if (is_dir($dir)) {
 
   $message = [
     'message' => "Hecho",
+    'status' => "success",
     'action' => "Se ha eliminado correctamente la foto de perfil"
   ];
 } else {

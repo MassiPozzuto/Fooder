@@ -2,7 +2,7 @@
 
 
 require_once("../../../includes/config.php");
-
+$message = ["status" => "error"];
 if (isset($_SESSION['user'])) {
   if (isset($_POST['recipe_reported_id']) && is_numeric($_POST['recipe_reported_id'])) {
     if (isset($_POST['justification']) && $_POST['justification'] && isset($_POST['rep_why']) && $_POST['rep_why']) {
@@ -15,6 +15,7 @@ if (isset($_SESSION['user'])) {
 
       $message = [
         'message' => "Hecho",
+        'status' => "success",
         'action' => "Se reporto correctamente la receta con id " . $_POST['recipe_reported_id']
       ];
     } else {

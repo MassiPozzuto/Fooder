@@ -4,6 +4,7 @@
 
 require_once "../../../includes/config.php";
 require_once "../../../includes/functions.php";
+$message = ["status" => "error"];
 
 $page = (isset($_POST['page'])) ? $_POST['page'] : 1;
 
@@ -212,7 +213,7 @@ if ($_POST['for'] != 'recipes_reported_mod') {
 $message = [
   'message' => "Hecho",
   'status' => "success",
-  'user_logged_id' => (isset($_SESSION['user']['id'])) ? $_SESSION['user']['id'] : "puto",
+  'user_logged_id' => (isset($_SESSION['user']['id'])) ? $_SESSION['user']['id'] : null,
   'recipes' => $rowRecipe,
   'amt_recipes_page' => $amt_recipes_page,
   'amt_total_reg' => $amt_total_reg,

@@ -1,6 +1,7 @@
 <?php
 
 require_once "../../../includes/config.php";
+$message = ["status" => "error"];
 
 if(isset($_SESSION['user']) && $_SESSION['user']['role_id'] != 1 && !empty($_POST)){
     $sqlFeaturedCategories = "SELECT id, name FROM categories WHERE featured IS NOT NULL AND id != " . $_POST['category_id'];
@@ -28,6 +29,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']['role_id'] != 1 && !empty($_POS
 
             $message = [
                 'estado' => 'Hecho',
+                'status' => "success",
                 'message' => 'Se agrego la categoria a las favoritas',
                 'action' => 'fav'
             ];
@@ -42,6 +44,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']['role_id'] != 1 && !empty($_POS
 
             $message = [
                 'estado' => 'Hecho',
+                'status' => "success",
                 'message' => 'Se quito la categoria de las favoritas',
                 'action' => 'unfav'
             ];

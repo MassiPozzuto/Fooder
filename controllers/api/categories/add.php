@@ -59,6 +59,7 @@ if (isset($_SESSION['user']) && $_SESSION['user']['role_id'] != 1) {
             // Salio todo bien
             return print_r(json_encode($message = [
                 'message' => "Hecho",
+                'status' => "success",
                 'action' => "Se ha creado correctamente la categoria",
                 'category_id' => $rowId['category_id'],
                 'status' => http_response_code(200)

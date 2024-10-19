@@ -6,7 +6,7 @@ require_once "../../../includes/config.php";
 require_once "../../../includes/functions.php";
 
 $page = (isset($_POST['page'])) ? $_POST['page'] : 1;
-
+$message = ["status" => "error"];
 if ($_POST['for'] == 'searches') {
   $search = trim($_POST['search']);
   if (isset($_SESSION['user'])) {
@@ -130,6 +130,7 @@ foreach ($rowAccounts as $key => $value) {
 
 $message = [
   'message' => "Hecho",
+  'status' => "success",
   'user_logged_id' => (isset($_SESSION['user']['id'])) ? $_SESSION['user']['id'] : null,
   'user_logged_role_id' => (isset($_SESSION['user']['role_id'])) ? $_SESSION['user']['role_id'] : null,
   'accounts' => $rowAccounts,
