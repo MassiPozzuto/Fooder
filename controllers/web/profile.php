@@ -9,7 +9,7 @@ if (isset($_GET['id']) || is_numeric($_GET['id'])) {
   $rowExistUser = mysqli_fetch_assoc($resExistUser);
   if ($rowExistUser) {
     if (isset($_SESSION['user'])) {
-      // Para los datos del usuario, cant. de recetas, cant. de followers, cant. de followeds. También verifica si el usuario logueado lo sigue. RECORDATORIO QUE ME RECUERDA UNA COSA A RECORDAR
+      // Para los datos del usuario, cant. de recetas, cant. de followers, cant. de followeds. También verifica si el usuario logueado lo sigue. RECORDAT1ORIO QUE ME RECUERDA UNA COSA A RECORDAR
       $sqlCreator = "SELECT users.*, COUNT(recipes.id) AS cant_recipes, tbl_cant_followers.cant_followers, tbl_cant_followeds.cant_followeds, tbl_verify_follow.verify_follow 
                         FROM users 
                         LEFT JOIN recipes ON users.id = recipes.user_id 

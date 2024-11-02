@@ -20,14 +20,14 @@ if (is_numeric($followedId)) {
     if (!$resFollow) {
       die('Error de Consulta ' . mysqli_error($conn));
     }
-    $devolver = array('follow' => 'agregar');
+    $devolver = array('follow' => 'agregar', 'status' =>'success');
   } else {
     $sqlUnfollow = "DELETE FROM follows WHERE followed_id= '" . $followedId . "' AND follower_id= '" . $_SESSION['user']['id'] . "' ";
     $resUnfollow = mysqli_query($conn, $sqlUnfollow);
     if (!$resUnfollow) {
       die('Error de Consulta ' . mysqli_error($conn));
     }
-    $devolver = array('follow' => 'sacar');
+    $devolver = array('follow' => 'sacar', 'status' =>'success');
   }
 }
 

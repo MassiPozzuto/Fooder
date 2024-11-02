@@ -103,6 +103,48 @@ if ($_POST['for'] == 'searches') {
       " GROUP BY users.id
                     ORDER BY users.username ASC";
   }
+} else if($_POST['for'] == 'profile_mobile'){
+  if (isset($_SESSION['user'])) {
+    // Para los datos del usuario, cant. de recetas, cant. de followers, cant. de followeds. También verifica si el usuario logueado lo sigue. RECORDAT1ORIO QUE ME RECUERDA UNA COSA A RECORDAR
+    $sqlAccounts = "SELECT users.*, COUNT(recipes.id) AS cant_recipes, tbl_cant_followers.cant_followers, tbl_cant_followeds.cant_followeds, tbl_verify_follow.verify_follow 
+                      FROM users 
+                      LEFT JOIN recipes ON users.id = recipes.user_id 
+                      LEFT JOIN 
+                          (SELECT followed_id, COUNT(followed_id) AS cant_followers FROM follows 
+                          INNER JOIN users
+                          ON follows.follower_id = users.id
+                          WHERE followed_id = '" . $_POST['profile_id'] . "' AND users.deleted_at IS NULL) AS tbl_cant_followers
+                          ON users.id = tbl_cant_followers.followed_id
+                      LEFT JOIN 
+                          (SELECT follower_id, COUNT(follower_id) AS cant_followeds FROM follows 
+                          INNER JOIN users
+                          ON follows.followed_id = users.id
+                          WHERE follower_id = '" . $_POST['profile_id'] . "' AND users.deleted_at IS NULL) AS tbl_cant_followeds
+                          ON users.id = tbl_cant_followeds.follower_id
+                      LEFT JOIN (SELECT followed_id, COUNT(id) as verify_follow 
+                              FROM follows
+                              WHERE follower_id = '" . $_SESSION['user']['id'] . "'
+                              GROUP BY followed_id) AS tbl_verify_follow
+                          ON users.id = tbl_verify_follow.followed_id
+                      WHERE users.id = '" . $_POST['profile_id'] . "' AND users.deleted_at IS NULL AND recipes.deleted_at IS NULL";
+  } else {
+    // Para los datos del usuario, cant. de recetas, cant. de followers, cant. de followeds. NO verifica si el user logueado lo sigue (no esta logueado)
+    $sqlAccounts = "SELECT users.*, COUNT(recipes.id) AS cant_recipes, tbl_cant_followers.cant_followers, tbl_cant_followeds.cant_followeds FROM users 
+                      LEFT JOIN recipes ON users.id = recipes.user_id 
+                      LEFT JOIN 
+                          (SELECT followed_id, COUNT(followed_id) AS cant_followers FROM follows 
+                          INNER JOIN users
+                          ON follows.follower_id = users.id
+                          WHERE followed_id = '" . $_POST['profile_id'] . "' AND users.deleted_at IS NULL) AS tbl_cant_followers
+                          ON users.id = tbl_cant_followers.followed_id
+                      LEFT JOIN 
+                          (SELECT follower_id, COUNT(follower_id) AS cant_followeds FROM follows 
+                          INNER JOIN users
+                          ON follows.followed_id = users.id
+                          WHERE follower_id = '" . $_POST['profile_id'] . "' AND users.deleted_at IS NULL) AS tbl_cant_followeds
+                          ON users.id = tbl_cant_followeds.follower_id
+                      WHERE users.id = '" . $_POST['profile_id'] . "' AND users.deleted_at IS NULL";
+  }
 }
 
 $resultAccounts = mysqli_query($conn, $sqlAccounts);
@@ -110,33 +152,53 @@ if (!$resultAccounts) {
   die('Error de Consulta' . mysqli_error($conn));
 }
 
-$amt_total_reg = mysqli_num_rows($resultAccounts);
-$amt_accounts_page = ceil(mysqli_num_rows($resultAccounts) / CANT_REG_PAG);
+if($_POST['for'] == 'profile_mobile'){
+  $account = mysqli_fetch_assoc($resultAccounts);
 
-$sqlAccounts .= " LIMIT " . CANT_REG_PAG * ($page - 1) . ", " . CANT_REG_PAG;
-$resultAccounts = mysqli_query($conn, $sqlAccounts);
-if (!$resultAccounts) {
-  die('Error de Consulta' . mysqli_error($conn));
+  $account['profile_pic'] = profile_image($_POST['profile_id']);
+  $account['username'] = htmlspecialchars($account['username']);
+  $account['name'] = htmlspecialchars($account['name']);
+  $account['biography'] = htmlspecialchars($account['biography']);
+
+  $message = [
+    'message' => "Hecho",
+    'status' => "success",
+    'user_logged_id' => (isset($_SESSION['user']['id'])) ? $_SESSION['user']['id'] : null,
+    'accountData' => $account,
+  ];
+
+
+} else {
+  $amt_total_reg = mysqli_num_rows($resultAccounts);
+  $amt_accounts_page = ceil(mysqli_num_rows($resultAccounts) / CANT_REG_PAG);
+  
+  $sqlAccounts .= " LIMIT " . CANT_REG_PAG * ($page - 1) . ", " . CANT_REG_PAG;
+  $resultAccounts = mysqli_query($conn, $sqlAccounts);
+  if (!$resultAccounts) {
+    die('Error de Consulta' . mysqli_error($conn));
+  }
+  $rowAccounts = mysqli_fetch_all($resultAccounts, MYSQLI_ASSOC);
+  
+  foreach ($rowAccounts as $key => $value) {
+    $rowAccounts[$key]['profile_pic'] = profile_image($value['id']);
+  
+    $rowAccounts[$key]['username'] = htmlspecialchars($rowAccounts[$key]['username']);
+    $rowAccounts[$key]['name'] = htmlspecialchars($rowAccounts[$key]['name']);
+    $rowAccounts[$key]['biography'] = htmlspecialchars($rowAccounts[$key]['biography']);
+  }
+  
+  $message = [
+    'message' => "Hecho",
+    'status' => "success",
+    'user_logged_id' => (isset($_SESSION['user']['id'])) ? $_SESSION['user']['id'] : null,
+    'user_logged_role_id' => (isset($_SESSION['user']['role_id'])) ? $_SESSION['user']['role_id'] : null,
+    'accounts' => $rowAccounts,
+    'amt_accounts_page' => $amt_accounts_page,
+    'amt_total_reg' => $amt_total_reg
+  ];
 }
-$rowAccounts = mysqli_fetch_all($resultAccounts, MYSQLI_ASSOC);
 
-foreach ($rowAccounts as $key => $value) {
-  $rowAccounts[$key]['profile_pic'] = profile_image($value['id']);
 
-  $rowAccounts[$key]['username'] = htmlspecialchars($rowAccounts[$key]['username']);
-  $rowAccounts[$key]['name'] = htmlspecialchars($rowAccounts[$key]['name']);
-  $rowAccounts[$key]['biography'] = htmlspecialchars($rowAccounts[$key]['biography']);
-}
-
-$message = [
-  'message' => "Hecho",
-  'status' => "success",
-  'user_logged_id' => (isset($_SESSION['user']['id'])) ? $_SESSION['user']['id'] : null,
-  'user_logged_role_id' => (isset($_SESSION['user']['role_id'])) ? $_SESSION['user']['role_id'] : null,
-  'accounts' => $rowAccounts,
-  'amt_accounts_page' => $amt_accounts_page,
-  'amt_total_reg' => $amt_total_reg
-];
 
 header("Content-Type: application/json; charset=utf-8");
 return print_r(json_encode($message));

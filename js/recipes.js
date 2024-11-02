@@ -141,15 +141,15 @@ function loadRecipes() {
 				}
 
 				recipes.forEach((recipe) => {
-					var profile_extencion = (recipe.profile_pic).split(".");
+					// profile_extencion = (recipe.profile_pic).split(".");
           //../../imagenes/profiles/profile_pic/miniprofile_image.${profile_extencion[5]}
-          var a = (recipe.profile_pic).split("/")
+          var profile_pic_name = (recipe.profile_pic).split("/").pop()
           code_html += `
           <div class="container-v3 recipe" id="recipe_${recipe.id}">
             <div class="container__user">
               <div>`
 
-              if(a[4] == "default.png"){
+              if(profile_pic_name == "default.png"){
                 code_html +=`
                 <a class="container__user--profilepicture" href="profile.php?id=${recipe.user_id}">
                   <img src="${recipe.profile_pic}" alt="foto perfil">
@@ -157,7 +157,7 @@ function loadRecipes() {
               }else{
                 code_html += `
                 <a class="container__user--profilepicture" href="profile.php?id=${recipe.user_id}">
-                  <img src="../../images/profiles/${recipe.user_id}/profile_pic/profile_image.${profile_extencion[5]}" alt="foto perfil">
+                  <img src="../../images/profiles/${recipe.user_id}/profile_pic/${profile_pic_name}" alt="foto perfil">
                 </a>`
               }
               code_html +=
