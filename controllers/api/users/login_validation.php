@@ -36,7 +36,7 @@ if (!empty($_POST)) {
       } else {
         // La cuenta esta baneada
         $rowIsBan = mysqli_fetch_assoc($resultIsBan);
-        $message['account'] = 'Actualmente te encuentras baneado, para más información, revisa tu correo';  
+        $message['account'] = 'Actualmente te encuentras baneado, para más información, revisa tu correo';
       }
     } else {
       // Error en la autentificacion 
