@@ -7,7 +7,7 @@ define('RUTA_IMG_RECIPES', 'images/recipes');
 define('RUTA_IMG_CATEGORIES', 'images/categories');
 define('CANT_REG_PAG', 30);
 
-$conn = mysqli_connect('localhost', 'root', '', 'fooder', 3307);
+$conn = mysqli_connect('localhost', 'root', '', 'fooder');
 if (!$conn) {
   die('Error de Conexión (' . mysqli_connect_errno() . ') ' . mysqli_connect_error());
 }
