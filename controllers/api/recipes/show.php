@@ -166,6 +166,42 @@ if ($_POST['for'] == 'home') {
                         WHERE recipes.deleted_at IS NULL AND reports.reported_recipe_id IS NOT NULL AND reports.resolved_at IS NULL
                         GROUP BY recipes.id
                         ORDER BY recipes.id DESC";
+  }else if($_POST['for'] == 'recipes_specific'){
+    if (isset($_SESSION['user'])) {
+      // Para los datos de la receta,  los datos del usuario creador y cant. de likes. Tambien verifica si le dio like a la receta
+      $sqlRecipe = "SELECT recipes.*, users.username,  tbl_cant_comments.cant_comments, COUNT(recipes_likes.recipe_id) AS cant_likes, tbl_verify_like.verify_like 
+                  FROM recipes 
+                  INNER JOIN users ON recipes.user_id = users.id 
+                  LEFT JOIN recipes_likes ON recipes.id = recipes_likes.recipe_id 
+                  LEFT JOIN 
+                      (SELECT recipes.id AS recipe_id, COUNT(comments.recipe_id) AS cant_comments 
+                          FROM recipes 
+                          LEFT JOIN comments ON comments.recipe_id=recipes.id 
+                          WHERE comments.deleted_at IS NULL
+                          GROUP BY comments.recipe_id) AS tbl_cant_comments 
+                      ON recipes.id = tbl_cant_comments.recipe_id
+                  LEFT JOIN (SELECT recipe_id, COUNT(id) as verify_like 
+                          FROM recipes_likes
+                          WHERE user_id = '" . $_SESSION['user']['id'] . "'
+                          GROUP BY recipe_id) AS tbl_verify_like
+                      ON recipes.id = tbl_verify_like.recipe_id
+                  WHERE recipes.id= '" . $_POST['id'] . "'
+                  GROUP BY recipes.id;";
+    }else {
+      // Para los datos de la receta,  los datos del usuario creador y cant. de likes
+      $sqlRecipe = "SELECT recipes.*, users.username,  tbl_cant_comments.cant_comments, COUNT(recipes_likes.recipe_id) AS cant_likes
+                FROM recipes 
+                INNER JOIN users ON recipes.user_id = users.id 
+                LEFT JOIN recipes_likes ON recipes.id = recipes_likes.recipe_id 
+                LEFT JOIN 
+                    (SELECT recipes.id AS recipe_id, COUNT(comments.recipe_id) AS cant_comments 
+                        FROM recipes 
+                        LEFT JOIN comments ON comments.recipe_id=recipes.id 
+                        GROUP BY comments.recipe_id) AS tbl_cant_comments 
+                    ON recipes.id = tbl_cant_comments.recipe_id
+                WHERE recipes.id= '" . $_POST['id'] . "'
+                GROUP BY recipes.id;";
+    }
   }
 }
 

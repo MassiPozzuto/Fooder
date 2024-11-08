@@ -41,6 +41,7 @@ if (isset($_SESSION['user'])) {
             
           }
 
+          
           $ruta = "images/profiles/" . $_SESSION['user']['id'] . "/" . $file['name'];
 
           if (move_uploaded_file($file['tmp_name'], "../../../" . $ruta) && is_dir($profile_pic)) {
@@ -103,7 +104,7 @@ if (isset($_SESSION['user'])) {
   }
 } else {
   // No esta logueado
-  $message['reason'] = "No estas lgueado";
+  $message['reason'] = "No estas logueado";
 }
 
 header("Content-Type: application/json; charset=utf-8");
