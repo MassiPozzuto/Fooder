@@ -16,8 +16,11 @@ if (isset($_SESSION['user'])) {
   if (mysqli_num_rows($resultUserLogged) > 0) {
     $row = mysqli_fetch_assoc($resultUserLogged);
     $_SESSION['user'] = $row;
+    $test['user'] = $row;
+    echo json_encode($test);
   }
 } else {
+  echo json_encode((["error" => "Sesión no activa"]));
   header('location: login.php');
 }
 
