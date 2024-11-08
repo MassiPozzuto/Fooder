@@ -166,7 +166,8 @@ if ($_POST['for'] == 'home') {
                         WHERE recipes.deleted_at IS NULL AND reports.reported_recipe_id IS NOT NULL AND reports.resolved_at IS NULL
                         GROUP BY recipes.id
                         ORDER BY recipes.id DESC";
-  }else if($_POST['for'] == 'recipes_specific'){
+//Posteod dedicado android (sin usar)
+ }else if($_POST['for'] == 'recipes_specific'){
     if (isset($_SESSION['user'])) {
       // Para los datos de la receta,  los datos del usuario creador y cant. de likes. Tambien verifica si le dio like a la receta
       $sqlRecipe = "SELECT recipes.*, users.username,  tbl_cant_comments.cant_comments, COUNT(recipes_likes.recipe_id) AS cant_likes, tbl_verify_like.verify_like 
@@ -182,10 +183,10 @@ if ($_POST['for'] == 'home') {
                       ON recipes.id = tbl_cant_comments.recipe_id
                   LEFT JOIN (SELECT recipe_id, COUNT(id) as verify_like 
                           FROM recipes_likes
-                          WHERE user_id = '" . $_SESSION['user']['id'] . "'
+                          WHERE user_id = '" . 1 . "'
                           GROUP BY recipe_id) AS tbl_verify_like
                       ON recipes.id = tbl_verify_like.recipe_id
-                  WHERE recipes.id= '" . $_POST['id'] . "'
+                  WHERE recipes.id= '" . $_GET['id'] . "'
                   GROUP BY recipes.id;";
     }else {
       // Para los datos de la receta,  los datos del usuario creador y cant. de likes
@@ -199,11 +200,11 @@ if ($_POST['for'] == 'home') {
                         LEFT JOIN comments ON comments.recipe_id=recipes.id 
                         GROUP BY comments.recipe_id) AS tbl_cant_comments 
                     ON recipes.id = tbl_cant_comments.recipe_id
-                WHERE recipes.id= '" . $_POST['id'] . "'
+                WHERE recipes.id= '" . $_GET['id'] . "'
                 GROUP BY recipes.id;";
     }
-  }
-}
+  } 
+} 
 
 $resultRecipe = mysqli_query($conn, $sqlRecipe);
 if (!$resultRecipe) {
