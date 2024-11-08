@@ -1,7 +1,7 @@
 <?php
 
-
 require_once "../../includes/config.php";
+require_once "../../includes/functions.php";
 
 // Detectar si la solicitud es para la API móvil
 $isApiRequest = isset($_GET['api']) && $_GET['api'] == '1';
@@ -65,6 +65,8 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         
         if ($isApiRequest) {
             // Respuesta JSON para la aplicación móvil
+
+            $rowRecipe['profile_pic_url'] = profile_image($_GET['id']);
             header("Content-Type: application/json; charset=utf-8");
             print_r(json_encode($rowRecipe)) ;
             exit();
