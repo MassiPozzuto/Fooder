@@ -14,7 +14,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     if ($rowExistRecipe) {
         if (isset($_SESSION['user'])) {
             // Consulta con `verify_like` para usuarios registrados
-            $sqlRecipe = "SELECT recipes.*, users.username, tbl_cant_comments.cant_comments, COUNT(recipes_likes.recipe_id) AS cant_likes, tbl_verify_like.verify_like 
+            $sqlRecipe = "SELECT recipes.*, users.id AS user_id,users.username, tbl_cant_comments.cant_comments, COUNT(recipes_likes.recipe_id) AS cant_likes, tbl_verify_like.verify_like 
                           FROM recipes 
                           INNER JOIN users ON recipes.user_id = users.id 
                           LEFT JOIN recipes_likes ON recipes.id = recipes_likes.recipe_id 
@@ -34,7 +34,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                           GROUP BY recipes.id;";
         } else {
             // Consulta sin `verify_like` para usuarios no registrados
-            $sqlRecipe = "SELECT recipes.*, users.username, tbl_cant_comments.cant_comments, COUNT(recipes_likes.recipe_id) AS cant_likes
+            $sqlRecipe = "SELECT recipes.*, users.id AS user_id, users.username, tbl_cant_comments.cant_comments, COUNT(recipes_likes.recipe_id) AS cant_likes
                           FROM recipes 
                           INNER JOIN users ON recipes.user_id = users.id 
                           LEFT JOIN recipes_likes ON recipes.id = recipes_likes.recipe_id 
@@ -66,7 +66,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         if ($isApiRequest) {
             // Respuesta JSON para la aplicación móvil
 
-            $rowRecipe['profile_pic_url'] = profile_image($_GET['id']);
+            $rowRecipe['profile_pic_url'] = profile_image($rowRecipe['user_id']);
             header("Content-Type: application/json; charset=utf-8");
             print_r(json_encode($rowRecipe)) ;
             exit();

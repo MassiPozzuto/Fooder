@@ -19,7 +19,7 @@ if (is_numeric($comment_id)) {
     if (!$resLike) {
       die('Error de Consulta ' . mysqli_error($conn));
     }
-    $devolver = array('like' => 'sumar');
+    $devolver = array('like' => 'sumar', 'status' => 'success');
   } else {
     // Saco el like a la base de datos
     $sqlDislike = "DELETE FROM comments_likes WHERE comment_id= '" . $comment_id . "' AND user_id= '" . $_SESSION['user']['id'] . "' ";
@@ -27,7 +27,7 @@ if (is_numeric($comment_id)) {
     if (!$resDislike) {
       die('Error de Consulta ' . mysqli_error($conn));
     }
-    $devolver = array('like' => 'restar');
+    $devolver = array('like' => 'restar', 'status' => 'success');
   }
 }
 
