@@ -21,7 +21,8 @@ if (!empty($_POST)) {
       $resultIsBan = mysqli_query($conn, $sqlIsBan);
 
       if (mysqli_num_rows($resultIsBan) === 0) {
-        $_SESSION['user'] = mysqli_fetch_assoc($resultLogin);
+        $dataLogin = mysqli_fetch_assoc($resultLogin);
+        $_SESSION['user'] = $dataLogin;
 
         if (isset($_POST['remember']) && $_POST['remember']) {
           setcookie('email', $_POST['email'], time() + 20 * 86400, '/');
@@ -33,6 +34,7 @@ if (!empty($_POST)) {
 
         $message['message'] = "Se ha iniciado sesión correctamente";
         $message['status'] = "success";
+        $message['user_id'] = $dataLogin['id'];
       } else {
         // La cuenta esta baneada
         $rowIsBan = mysqli_fetch_assoc($resultIsBan);
