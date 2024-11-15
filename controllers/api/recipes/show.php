@@ -142,7 +142,7 @@ if ($_POST['for'] == 'home') {
                 ORDER BY recipes.id DESC";
   } else {
     // Para los datos de la receta del usuario, cant.likes y cant.comments                
-    $sqlRecipe = "SELECT recipes.*, tbl_cant_comments.cant_comments, COUNT(recipes_likes.recipe_id) AS cant_likes
+    $sqlRecipe = "SELECT recipes.*, users.username, tbl_cant_comments.cant_comments, COUNT(recipes_likes.recipe_id) AS cant_likes
                 FROM recipes 
                 INNER JOIN users ON recipes.user_id = users.id 
                 LEFT JOIN recipes_likes ON recipes.id = recipes_likes.recipe_id 
@@ -166,8 +166,8 @@ if ($_POST['for'] == 'home') {
                         WHERE recipes.deleted_at IS NULL AND reports.reported_recipe_id IS NOT NULL AND reports.resolved_at IS NULL
                         GROUP BY recipes.id
                         ORDER BY recipes.id DESC";
-//Posteod dedicado android (sin usar)
- }else if($_POST['for'] == 'recipes_specific'){
+    //Posteod dedicado android (sin usar)
+  } else if ($_POST['for'] == 'recipes_specific') {
     if (isset($_SESSION['user'])) {
       // Para los datos de la receta,  los datos del usuario creador y cant. de likes. Tambien verifica si le dio like a la receta
       $sqlRecipe = "SELECT recipes.*, users.username,  tbl_cant_comments.cant_comments, COUNT(recipes_likes.recipe_id) AS cant_likes, tbl_verify_like.verify_like 
@@ -188,7 +188,7 @@ if ($_POST['for'] == 'home') {
                       ON recipes.id = tbl_verify_like.recipe_id
                   WHERE recipes.id= '" . $_GET['id'] . "'
                   GROUP BY recipes.id;";
-    }else {
+    } else {
       // Para los datos de la receta,  los datos del usuario creador y cant. de likes
       $sqlRecipe = "SELECT recipes.*, users.username,  tbl_cant_comments.cant_comments, COUNT(recipes_likes.recipe_id) AS cant_likes
                 FROM recipes 
@@ -203,8 +203,8 @@ if ($_POST['for'] == 'home') {
                 WHERE recipes.id= '" . $_GET['id'] . "'
                 GROUP BY recipes.id;";
     }
-  } 
-} 
+  }
+}
 
 $resultRecipe = mysqli_query($conn, $sqlRecipe);
 if (!$resultRecipe) {
