@@ -15,7 +15,7 @@ if (isset($_SESSION['user'])) {
     $_SESSION['user'] = $row;
     $test['user'] = $row;
 
-    $userFolder = "../../images/profiles/".$_SESSION['user']['id']."/";
+    $userFolder = "../../images/profiles/".$_SESSION['user']['id']."/profile_pic/";
     
     if (is_dir($userFolder)) {
       $files = scandir($userFolder);
@@ -27,7 +27,9 @@ if (isset($_SESSION['user'])) {
           $test['profilePic'] = $userFolder.$profileImage;          
       }
       echo json_encode($test, JSON_UNESCAPED_SLASHES);      
-    }    
+    }else{
+      echo json_encode($test);      
+    }
     //echo json_encode($test, JSON_UNESCAPED_SLASHES);    
   }
 } else {
