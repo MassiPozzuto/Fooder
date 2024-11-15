@@ -15,7 +15,7 @@ if (isset($_SESSION['user'])) {
         $_SESSION['user'] = $row;
         $test['user'] = $row;
 
-        $userFolder = "../../../images/profiles/" . $_SESSION['user']['id'] . "/";
+        $userFolder = "../../../images/profiles/" . $_SESSION['user']['id'];
 
         if (is_dir($userFolder)) {
             $files = scandir($userFolder);
@@ -23,7 +23,7 @@ if (isset($_SESSION['user'])) {
 
             // Verifica si hay archivos en la carpeta
             if (!empty($files)) {
-                $profileImage = array_values($files)[0]; // Primer archivo encontrado
+                $profileImage = array_values($files)[1]; // La primer posicion es una carpeta, la segunda es la imagen
                 $test['profilePic'] = "../../images/profiles/" . $_SESSION['user']['id'] . "/" . $profileImage;
             }
         } else {

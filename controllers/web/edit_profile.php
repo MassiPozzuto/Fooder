@@ -13,27 +13,8 @@ if (isset($_SESSION['user'])) {
   if (mysqli_num_rows($resultUserLogged) > 0) {
     $row = mysqli_fetch_assoc($resultUserLogged);
     $_SESSION['user'] = $row;
-    $test['user'] = $row;
-
-    $userFolder = "../../images/profiles/".$_SESSION['user']['id']."/profile_pic/";
-    
-    if (is_dir($userFolder)) {
-      $files = scandir($userFolder);
-      $files = array_diff($files, array('.', '..', 'default.jpg'));
-
-      // Verifica si hay archivos en la carpeta
-      if (!empty($files)) {
-          $profileImage = array_values($files)[0]; // Primer archivo encontrado
-          $test['profilePic'] = $userFolder.$profileImage;          
-      }
-      echo json_encode($test, JSON_UNESCAPED_SLASHES);      
-    }else{
-      echo json_encode($test);      
-    }
-    //echo json_encode($test, JSON_UNESCAPED_SLASHES);    
   }
 } else {
-  echo json_encode((["error" => "Sesión no activa"]));
   header('location: login.php');
 }
 
