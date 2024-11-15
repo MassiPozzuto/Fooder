@@ -24,7 +24,7 @@ if (isset($_SESSION['user'])) {
         'username' => $_SESSION['user']['username'],
         'created_at' => creation_date(date("Y-m-d H:i:s")),
         'comment' => trim($_POST['comment']),
-        'status' => http_response_code(200)
+        //'status' => http_response_code(200)
       ];
     } else {
       die('Error de Consulta ' . mysqli_error($conn));
@@ -40,7 +40,7 @@ if (isset($_SESSION['user'])) {
   $message = [
     'message' => 'Error',
     'reason' => "Usuario no logeado",
-    'status' => http_response_code(500)
+   // 'status' => http_response_code(500)
   ];
 }
 
